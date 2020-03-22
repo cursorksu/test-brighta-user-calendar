@@ -1,0 +1,19 @@
+@import "./public/styles/utils/vars";
+@import "./public/styles/utils/mixins";
+
+.show-option {
+  &__select {
+    cursor: pointer;
+    line-height: 40px;
+    border: none;
+    margin-left: 20px;
+    background-image: url(/icons/chevron-down.svg);
+    background-position: right 15px center;
+    background-repeat: no-repeat;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 20px 40px 20px 20px;
+  }
+}

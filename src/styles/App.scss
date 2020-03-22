@@ -1,0 +1,31 @@
+.body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  background: #f0f6fc;
+  position: relative;
+}
+
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 0 100px 100px;
+
+  @media (max-width: 1900px) {
+    max-width: 1200px;
+    padding: 0 20px 100px 20px;
+    margin-left: 270px;
+  }
+}
+
+.main {
+  width: 100%;
+  position: relative;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,11 @@
+@import "./public/styles/utils/vars";
+
+.users {
+  background: $main-light;
+  border-radius: 10px;
+  padding: 0 32px 10px;
+
+  &__select {
+    flex-basis: 105px;
+  }
+}

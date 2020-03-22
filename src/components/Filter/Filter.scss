@@ -1,0 +1,110 @@
+@import "./public/styles/utils/vars";
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: $main-light;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 37px;
+  width: 100%;
+
+  &__col {
+    display: flex;
+    margin-bottom: 20px;
+  }
+}
+
+.btn-wrapper {
+  padding: 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  & .btn {
+    margin: 0;
+    flex-basis: 47%;
+  }
+}
+
+.btn {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 11px;
+  border-radius: 7px;
+  border: none;
+
+  &--primary {
+    line-height: 44px;
+    background-color: $accent;
+    color: $main-light;
+    padding: 0 30px;
+    transition: background-color, 0.3s ease-in-out;
+
+    &:disabled {
+      background: rgba(255, 116, 57, 0.5);
+      cursor: default;
+    }
+
+    &:hover {
+      background-color: #F16E36;
+
+      &:disabled {
+        background: rgba(255, 116, 57, 0.5);
+      }
+    }
+  }
+
+  &--secondary {
+    border: 2px solid $text-dark;
+    padding: 0 19px;
+    line-height: 38px;
+    transition: background-color, 0.3s ease-in-out;
+    background: $main-light;
+    &:hover {
+      color: $main-light;
+      background: $text-dark;
+    }
+  }
+}
+
+.MuiDialogActions-root .btn {
+  margin: 0;
+  flex-basis: 50%;
+}
+
+.filter-btn {
+  border: none;
+  background-color: $main-light;
+  padding: 0 30px 0 0;
+  margin-right: 30px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url(/icons/chevron-down.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: color 0.3s ease;
+
+  & svg {
+    margin-right: 20px;
+    transition: fill 0.3s ease;
+  }
+
+  &:hover {
+    color: $accent;
+    & svg path{
+      fill: $accent
+    }
+  }
+}
