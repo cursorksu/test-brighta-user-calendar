@@ -1,1 +1,1 @@
-export const BASE_URL = '//https.cursorksu.githab.io.test-brughta-user-calendar/';
+export const BASE_URL = 'https://cursorksu.github.io/test-brighta-user-calendar/api/data.json';
