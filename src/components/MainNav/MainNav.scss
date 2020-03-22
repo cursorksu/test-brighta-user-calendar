@@ -12,10 +12,27 @@
     top: 18px;
     left: 50%;
     transform: translateX(-50%);
+    transition: border 0.3s ease-in-out;
 
     & path {
       fill: #000;
     }
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    font-family: "PT Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    color: $text-dark;
   }
 
   &__item {
@@ -26,6 +43,7 @@
     border-radius: 6px;
     padding: 48px 16px 18px;
     text-align: center;
+    transition: border 0.3s ease-in-out;
 
     &:not(:last-child) {
       margin-bottom: 8px;
@@ -45,22 +63,14 @@
 
     &:hover {
       border: 1px solid $accent;
+
+      & .nav__link {
+        color: $accent;
+      }
+
+      & .nav__svg path {
+        fill: $accent;
+      }
     }
-  }
-
-  &__link {
-    display: block;
-    width: 100%;
-    height: 100%;
-
-    font-family: "PT Sans", sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 19px;
-    text-align: center;
-    text-decoration: none;
-
-    color: $text-dark;
   }
 }

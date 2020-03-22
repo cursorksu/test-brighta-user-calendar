@@ -95,7 +95,7 @@ export const App: FC = () => {
               && <LoadedMessage />}
           </Filter>
 
-          {isLoading && <p className="loader"><img src="/icons/loader.svg" alt="preloader" /></p>}
+          {isLoading && <p className="loader"><img src="/test-brighta-user-calendar/icons/loader.svg" alt="preloader" /></p>}
 
           {!error
             ? (
