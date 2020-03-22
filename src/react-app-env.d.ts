@@ -31,3 +31,16 @@ interface FilterParams {
   startDate: Date;
   endDate: Date;
 }
+
+interface CustomDate {
+  day: number;
+  month: number;
+  year: number;
+  today: boolean;
+  selectable: boolean;
+}
+
+interface Option {
+  value: string;
+  label: string;
+}

@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, {FC,  useState} from 'react';
+import React, { FC, useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import {
   ru,
@@ -11,6 +10,8 @@ import {
   lastThirtyDays,
   lastDayLastMonth,
   thisMonth,
+  filterOptions,
+  dateIntervals,
 } from '../../constants/data';
 import { Modal } from '../Modal';
 import { FilterParams } from '../FilterParams';
@@ -24,26 +25,38 @@ import './Calendar.scss';
 
 interface Props {
   onFilter: (field: string, start: Date, end: Date) => void;
+  resetFilter: () => void;
+  loadToBackend: () => void;
+  isFiltered: boolean;
 }
 
-export const Filter: FC<Props> = ({ onFilter }) => {
+export const Filter: FC<Props> = ({
+  onFilter,
+  loadToBackend,
+  isFiltered,
+  resetFilter,
+  children,
+}) => {
   const [startDate, setStartDate] = useState(now);
   const [endDate, setEndDate] = useState(now);
   const [filterBy, setFilterBy] = useState('');
   const [openFilter, setOpenFilter] = useState(false);
   const [open, setOpen] = useState(false);
-  const [option, setOption] = useState('Сегодня');
+  const [option, setOption] = useState('today');
   const [isDisabled, setIsDisabled] = useState<boolean | undefined>(true);
+
+  const optionIntervalContent = dateIntervals.find(interval => interval.label === option)!.value;
+  const optionFilterContent = filterOptions.find(interval => interval.label === filterBy);
 
   const setFilterOption = (opt: string) => {
     let filterOption = '';
 
     switch (opt) {
-      case 'По дате регистрации':
-        filterOption = 'По дате регистрации';
+      case 'signUpDay':
+        filterOption = 'signUpDay';
         break;
-      case 'По дате последней активности':
-        filterOption = 'По дате последней активности';
+      case 'lastActivity':
+        filterOption = 'lastActivity';
         break;
       default:
         return;
@@ -53,12 +66,26 @@ export const Filter: FC<Props> = ({ onFilter }) => {
     setOpenFilter(false);
   };
 
-  const dateTemplate = (date: any) => {
+  const dateTemplate = (date: CustomDate) => {
     const day = new Date(`${date.month + 1}/${date.day}/${date.year}`);
 
-    if (startDate === endDate) {
+    if (
+      startDate.getDate() === endDate.getDate()
+      && startDate.getMonth() === endDate.getMonth()
+      && startDate.getFullYear() === endDate.getFullYear()
+    ) {
       return (
-        <div className="none">{date.day}</div>
+        <div>{date.day}</div>
+      );
+    }
+
+    if (
+      date.day === endDate.getDate()
+      && date.month === endDate.getMonth()
+      && date.year === endDate.getFullYear()
+    ) {
+      return (
+        <div className="date__interval date__interval--end">{date.day}</div>
       );
     }
 
@@ -78,59 +105,58 @@ export const Filter: FC<Props> = ({ onFilter }) => {
       );
     }
 
-    if (
-      day === endDate
-    // && (date.month === endDate.getMonth()
-    // || date.month === endDate.getMonth())
-    ) {
-      return (
-        <div className="date__interval date__interval--end">{date.day}</div>
-      );
-    }
-
     return date.day;
   };
 
-  const setDataInterval = () => {
-    switch (option) {
-      case 'Весь срок':
-        setStartDate(allTime);
-        setEndDate(now);
+  const setDateInterval = (opt: string) => {
+    switch (opt) {
+      case 'allTime':
+        setStartDate(allTime());
+        setEndDate(now());
         break;
-      case 'Сегодня':
-        setStartDate(now);
-        setEndDate(now);
+      case 'today':
+        setStartDate(now());
+        setEndDate(now());
         break;
-      case 'Вчера':
-        setStartDate(new Date(yesterday));
-        setEndDate(new Date(yesterday));
+      case 'yesterday':
+        setStartDate(new Date(yesterday()));
+        setEndDate(new Date(yesterday()));
         break;
-      case 'Последние 7 дней':
-        setStartDate(new Date(lastWeek));
-        setEndDate(now);
+      case 'lastWeek':
+        setStartDate(new Date(lastWeek()));
+        setEndDate(now());
         break;
-      case 'Последние 30 дней':
-        setStartDate(new Date(lastThirtyDays));
-        setEndDate(now);
+      case 'lastThirtyDays':
+        setStartDate(new Date(lastThirtyDays()));
+        setEndDate(now());
         break;
-      case 'В этом месяце':
-        setStartDate(new Date(thisMonth));
-        setEndDate(now);
+      case 'thisMonth':
+        setStartDate(new Date(thisMonth()));
+        setEndDate(now());
         break;
-      case 'Прошлый месяц':
-        setStartDate(new Date(lastMonth));
-        setEndDate(new Date(lastDayLastMonth));
+      case 'lastMonth':
+        setStartDate(new Date(lastMonth()));
+        setEndDate(new Date(lastDayLastMonth()));
+        break;
+      case 'customInterval':
         break;
       default:
     }
   };
 
-  const setDataOption = (opt: string) => {
+  const setDateOption = (opt: string) => {
     setOption(opt);
     setIsDisabled(undefined);
 
-    setDataInterval();
-    onFilter(filterBy, startDate, endDate);
+    setDateInterval(opt);
+  };
+
+  const setInitialState = () => {
+    setStartDate(now());
+    setEndDate(now());
+    setFilterBy('');
+    setOption('today');
+    setIsDisabled(true);
   };
 
   const handleClickOpenFilter = () => {
@@ -142,17 +168,33 @@ export const Filter: FC<Props> = ({ onFilter }) => {
   };
 
   const handleCloseCancel = () => {
+    setOption('today');
     setOpen(false);
+    setInitialState();
   };
 
-  const handleCalendarChange = (event : any) => {
-    setEndDate(new Date(event.value));
+  const handleCalendarChange = (event: any) => {
+    setDateOption('customInterval');
+
+    if (event.value[0] === event.value[1]) {
+      return;
+    }
+
+    if (event.value[0] > event.value[1]) {
+      setEndDate(event.value[0]);
+      setStartDate(event.value[1]);
+    } else {
+      setEndDate(event.value[1]);
+      setStartDate(event.value[0]);
+    }
   };
 
   const handleClose = () => {
+    onFilter(filterBy, startDate, endDate);
     setOpen(false);
     setIsDisabled(true);
   };
+
 
   return (
     <div className="flex-container filter">
@@ -174,7 +216,7 @@ export const Filter: FC<Props> = ({ onFilter }) => {
             <path d="M15.7998 13.7H13.7998V15.7H15.7998V13.7Z" fill="black" />
             <path d="M19.1002 13.7H17.2002V15.7H19.1002V13.7Z" fill="black" />
           </svg>
-          {option}
+          {optionIntervalContent || 'Сегодня'}
         </button>
         <button className="filter-btn btn__filter" type="button" onClick={handleClickOpenFilter}>
           <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,31 +230,49 @@ export const Filter: FC<Props> = ({ onFilter }) => {
             <path d="M18.1997 23.5C17.5997 23.5 17.1997 23.1 17.1997 22.5V9.5C17.1997 8.9 17.5997 8.5 18.1997 8.5C18.7997 8.5 19.1997 8.9 19.1997 9.5V22.5C19.1997 23.1 18.7997 23.5 18.1997 23.5Z" fill="black" />
             <path d="M18.1999 10.2C16.3999 10.2 14.8999 8.6999 14.8999 6.8999C14.8999 5.0999 16.3999 3.59998 18.1999 3.59998C19.9999 3.59998 21.4999 5.0999 21.4999 6.8999C21.4999 8.6999 19.9999 10.2 18.1999 10.2ZM18.1999 5.69995C17.4999 5.69995 16.8999 6.3 16.8999 7C16.8999 7.7 17.4999 8.29993 18.1999 8.29993C18.8999 8.29993 19.4999 7.7 19.4999 7C19.4999 6.3 18.8999 5.69995 18.1999 5.69995Z" fill="black" />
           </svg>
-          {filterBy || 'Фильтр'}
+          {optionFilterContent
+            ? optionFilterContent.value
+            : 'Фильтр'}
         </button>
       </div>
       <div className="filter__col">
-        <button className="btn btn--secondary" type="button">Выгрузить</button>
+        <button
+          className="btn btn--secondary"
+          onClick={loadToBackend}
+          type="button"
+        >
+          Выгрузить
+        </button>
         <button className="btn btn--primary" type="button">Добавить контакт</button>
       </div>
 
-      <FilterParams
-        dates={[startDate, endDate]}
-      />
+
+      {isFiltered
+        && (
+          <FilterParams
+            resetFilter={resetFilter}
+            dates={[startDate, endDate]}
+            onClose={setInitialState}
+          />
+        )}
+      {children}
+
+
       {openFilter && (
         <Modal>
           <SelectTimeInterval
             lastOption={option}
-            options={['По дате регистрации', 'По дате последней активности']}
+            options={filterOptions}
             getOption={(str: string) => setFilterOption(str)}
           />
         </Modal>
       )}
+
       {open && (
         <Modal>
           <SelectTimeInterval
-            options={['Весь срок', 'Сегодня', 'Вчера', 'Последние 7 дней', 'Последние 30 дней', 'В этом месяце', 'Прошлый месяц']}
-            getOption={(str: string) => setDataOption(str)}
+            options={dateIntervals}
+            getOption={(str: string) => setDateOption(str)}
             lastOption={option}
           />
           <div className="calendar__wrapper">
@@ -220,7 +280,7 @@ export const Filter: FC<Props> = ({ onFilter }) => {
               dateTemplate={dateTemplate}
               inline
               locale={ru}
-              value={[startDate, endDate]}
+              value={[startDate]}
               dateFormat="dd/mm/yy"
               selectionMode="multiple"
               onChange={handleCalendarChange}

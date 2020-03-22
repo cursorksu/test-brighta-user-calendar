@@ -1,37 +1,42 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import classNames from 'classnames';
 import './SelectTimeInterval.scss';
 
 interface Props {
   getOption: (str: string) => void;
-  options: string[];
+  options: Option[];
   lastOption: string;
 }
 
-export const SelectTimeInterval: FC<Props> = ({ lastOption, getOption, options }) => {
+export const SelectTimeInterval: FC<Props> = ({
+  lastOption,
+  getOption,
+  options,
+}) => {
   const [activeOption, setActiveOption] = useState(lastOption);
 
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const opt: string = e.currentTarget.innerText;
-
-    setActiveOption(opt);
-    getOption(opt);
+  const handleClick = (label: string) => {
+    setActiveOption(label);
+    getOption(label);
   };
+
+  useEffect(() => {
+    setActiveOption(lastOption);
+  }, [lastOption]);
 
   return (
     <div className="select">
-      {options.map(opt => (
+      {options.map(({ value, label }) => (
         <button
-          key={opt}
+          key={label}
           type="button"
-          onClick={handleClick}
+          onClick={() => handleClick(label)}
           className={classNames({
             select__btn: 'select__btn',
-            'select__btn--active': activeOption === opt,
+            'select__btn--active': activeOption === label,
           })}
         >
-          {opt}
+          {value}
         </button>
       ))}
     </div>

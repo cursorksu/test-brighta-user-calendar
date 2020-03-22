@@ -46,16 +46,6 @@ body .p-datepicker table td {
   }
 }
 
-.p-inputtext {
-  //position: absolute;
-  //opacity: 0;
-  //z-index: -1;
-  //top: 0;
-  //width: 0;
-  //height: 0;
-  //padding: 0 !important;
-}
-
 .p-datepicker .p-datepicker-group {
   font-family: "Montserrat", sans-serif !important;
 }
@@ -69,6 +59,7 @@ body .p-datepicker table td.p-datepicker-today > span,
 .p-datepicker-today span {
   background: #dfe9f3;
 }
+
 body .p-datepicker table td.p-datepicker-today > span.p-highlight,
 body .p-datepicker table td > span.p-highlight {
   color: $main-light;
@@ -106,7 +97,8 @@ body .p-datepicker .p-datepicker-header .p-datepicker-next {
   padding-left: 3px;
 }
 
-.p-datepicker .p-datepicker-prev span, .p-datepicker .p-datepicker-next span {
+.p-datepicker .p-datepicker-prev span,
+.p-datepicker .p-datepicker-next span {
   display: initial;
   position: static;
   margin: 0;
@@ -118,27 +110,41 @@ body .p-datepicker:not(.p-disabled) .p-datepicker-header .p-datepicker-next:hove
   border: 2px solid $accent;
 }
 
+body .p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled):focus {
+  box-shadow: inset  0 0 0 0.2em  rgba(255, 116, 57, 0.2) ;
+}
+
 body .p-datepicker .p-datepicker-header .p-datepicker-title {
   margin-top: 6px;
 }
 
 body .p-datepicker table {
-  margin: 22px 0 0 0;
+  margin: 22px 0 0;
 }
 
 .date__interval {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  &--start,
+  &--end {
+    background-color: $accent;
+    color: $main-light;
+  }
 
   &:after,
   &:before {
-    content: '';
+    content: "";
     width: 500%;
     height: 28px;
     background: rgba(255, 116, 57, 0.2);
     position: absolute;
-
-    top: -7px;
+    top: 0;
   }
 
   &:after {
@@ -149,12 +155,8 @@ body .p-datepicker table {
     left: 51%;
   }
 
+  &--end:before,
   &--start:after {
     content: none;
   }
-
-  &--end:before {
-    content: none;
-  }
 }
-

@@ -50,6 +50,7 @@
 
       @media (max-width: 1900px) {
         white-space: pre-wrap;
+        line-height: 1.5;
       }
     }
 
@@ -64,7 +65,7 @@
       background: linear-gradient(270deg, #fff 53.27%, rgba(255, 255, 255, 0) 115.44%);
 
       @media (max-width: 1900px) {
-          content: none;
+        content: none;
       }
     }
   }

@@ -1,0 +1,65 @@
+@import "./public/styles/utils/vars";
+
+.massage {
+  display: inline-block;
+  background: $gray;
+  font-family: "PT Sans", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 41px;
+  padding: 0 42px 0 22px;
+  border-radius: 21px;
+  position: relative;
+  color: $main-light;
+  animation: fadeIn ease-in-out 1s 2s;
+  -webkit-animation: fadein ease-in-out 1s 2s;
+  -moz-animation: fadein ease-in-out 1s 2s;
+  -o-animation: fadein ease-in-out 1s 2s;
+
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

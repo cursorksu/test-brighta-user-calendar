@@ -14,7 +14,6 @@
 
   &__col {
     display: flex;
-    margin-bottom: 20px;
   }
 }
 
@@ -51,7 +50,7 @@
     }
 
     &:hover {
-      background-color: #F16E36;
+      background: $hover-accent;
 
       &:disabled {
         background: rgba(255, 116, 57, 0.5);
@@ -103,8 +102,8 @@
 
   &:hover {
     color: $accent;
-    & svg path{
-      fill: $accent
+    & svg path {
+      fill: $accent;
     }
   }
 }

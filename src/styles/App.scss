@@ -13,7 +13,7 @@
 
   @media (max-width: 1900px) {
     max-width: 1200px;
-    padding: 0 20px 100px 20px;
+    padding: 0 20px 100px;
     margin-left: 270px;
   }
 }
@@ -28,4 +28,13 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+}
+
+.loader {
+  display: block;
+  text-align: center;
+  & img {
+    width: 60px;
+    height: 60px;
+  }
 }
