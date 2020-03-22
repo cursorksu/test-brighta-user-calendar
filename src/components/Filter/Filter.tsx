@@ -37,8 +37,8 @@ export const Filter: FC<Props> = ({
   resetFilter,
   children,
 }) => {
-  const [startDate, setStartDate] = useState(now);
-  const [endDate, setEndDate] = useState(now);
+  const [startDate, setStartDate] = useState(now());
+  const [endDate, setEndDate] = useState(now());
   const [filterBy, setFilterBy] = useState('');
   const [openFilter, setOpenFilter] = useState(false);
   const [open, setOpen] = useState(false);

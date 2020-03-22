@@ -45,15 +45,15 @@ export const App: FC = () => {
   const setFilteredUsers = (field = 'signUpDay', start: Date, end: Date) => {
     if (field === 'signUpDay') {
       const userList = usersFromServer
-        .filter(user => new Date(user.signInDate) > start
-          && new Date(user.signInDate) < end);
+        .filter(user => new Date(user.signInDate) >= start
+          && new Date(user.signInDate) <= end);
 
       setVisibleUsers(userList);
       setIsFiltered(true);
     } else {
       const userList = usersFromServer
-        .filter(user => new Date(user.lastActivity) > start
-          && new Date(user.lastActivity) < end);
+        .filter(user => new Date(user.lastActivity) >= start
+          && new Date(user.lastActivity) <= end);
 
       setVisibleUsers(userList);
       setIsFiltered(true);
@@ -100,7 +100,7 @@ export const App: FC = () => {
           {!error
             ? (
               <p className="error">
-Ops!!!
+                Ops!!!
                 {error}
               </p>
             )
