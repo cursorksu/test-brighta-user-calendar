@@ -1,0 +1,162 @@
+[
+  {
+    "userId":1,
+    "name":"User1",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/1/2020",
+    "lastActivity":"03/21/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":2,
+    "name":"User2",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/01/2020",
+    "lastActivity":"02/11/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":3,
+    "name":"User3",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/03/2020",
+    "lastActivity":"03/01/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":4,
+    "name":"User4",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/02/2020",
+    "lastActivity":"03/18/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":6,
+    "name":"User6",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/01/2020",
+    "lastActivity":"03/05/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":5,
+    "name":"User5",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/02/2020",
+    "lastActivity":"02/20/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":7,
+    "name":"User7",
+    "email":"user@user.com",
+    "block":true,
+    "signInDate":"1/03/2020",
+    "lastActivity":"03/03/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":8,
+    "name":"User8",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/02/2020",
+    "lastActivity":"02/26/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":9,
+    "name":"User9",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"03/03/2020",
+    "lastActivity":"03/21/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":10,
+    "name":"User10",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"02/02/2020",
+    "lastActivity":"02/20/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":11,
+    "name":"User11",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"03/01/2020",
+    "lastActivity":"03/21/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":12,
+    "name":"User12",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/01/2020",
+    "lastActivity":"01/06/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":13,
+    "name":"User13",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"03/01/2020",
+    "lastActivity":"03/01/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":14,
+    "name":"User14",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"02/01/2020",
+    "lastActivity":"03/01/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":15,
+    "name":"User15",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/01/2020",
+    "lastActivity":"01/21/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  },
+  {
+    "userId":16,
+    "name":"User16",
+    "email":"user@user.com",
+    "block":false,
+    "signInDate":"1/02/2020",
+    "lastActivity":"03/02/2020",
+    "lastAction":"view_landing_course1",
+    "product":"Как наладить отнош"
+  }
+]
