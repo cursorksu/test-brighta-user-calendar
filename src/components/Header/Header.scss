@@ -1,4 +1,5 @@
 @import "./public/styles/utils/vars";
+@import "./public/styles/utils/mixins";
 
 .header {
   position: sticky;
@@ -6,9 +7,7 @@
   left: 0;
   right: 0;
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(space-between, center, nowrap);
   padding: 10px 20px 10px 38px;
   background: #f0f6fc;
 }

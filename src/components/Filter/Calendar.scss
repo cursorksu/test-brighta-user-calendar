@@ -1,4 +1,5 @@
 @import "./public/styles/utils/vars";
+@import "./public/styles/utils/mixins";
 
 .calendar__wrapper {
   grid-area: calendar;
@@ -6,8 +7,7 @@
   box-shadow: 0 10px 40px rgba(128, 158, 191, 0.2);
   border-radius: 10px;
   overflow: hidden;
-  display: flex;
-  justify-content: space-between;
+  @include flex(space-between, initial, nowrap);
   flex-direction: column;
 }
 
@@ -30,17 +30,14 @@ body .p-datepicker table td {
   overflow: hidden;
 
   & > span {
-    font-family: "Montserrat", sans-serif !important;
-    font-style: normal;
+    @include text-style;
+    @include flex(center, center, nowrap);
     font-weight: normal;
     font-size: 12px;
     padding: 0;
     margin: auto;
-    display: flex;
     border-radius: 50%;
     background: transparent;
-    align-items: center;
-    justify-content: center;
     width: 28px;
     height: 28px;
   }
@@ -80,9 +77,7 @@ body .p-datepicker .p-datepicker-header .p-datepicker-next {
   height: 24px;
   border-radius: 50%;
   border: 2px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(center, center, nowrap);
   transition: border 0.3s ease, color 0.3s ease;
   top: 8px;
 }
@@ -123,9 +118,7 @@ body .p-datepicker table {
 }
 
 .date__interval {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex(center, center, nowrap);
   position: relative;
   width: 28px;
   height: 28px;

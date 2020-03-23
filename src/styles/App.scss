@@ -1,7 +1,9 @@
+
+@import "./public/styles/utils/mixins";
+
 .body {
-  font-family: "Montserrat", sans-serif;
+  @include text-style;
   font-size: 13px;
-  font-weight: 400;
   background: #f0f6fc;
   position: relative;
 }
@@ -24,10 +26,7 @@
 }
 
 .flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  @include flex (space-between, flex-start, wrap);
 }
 
 .loader {

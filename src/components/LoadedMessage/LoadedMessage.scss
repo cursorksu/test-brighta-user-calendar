@@ -1,11 +1,10 @@
 @import "./public/styles/utils/vars";
+@import "./public/styles/utils/mixins";
 
 .massage {
   display: inline-block;
   background: $gray;
-  font-family: "PT Sans", sans-serif;
-  font-style: normal;
-  font-weight: bold;
+  @include title-style;
   font-size: 15px;
   line-height: 41px;
   padding: 0 42px 0 22px;
@@ -16,7 +15,6 @@
   -webkit-animation: fadein ease-in-out 1s 2s;
   -moz-animation: fadein ease-in-out 1s 2s;
   -o-animation: fadein ease-in-out 1s 2s;
-
 }
 
 @keyframes fadeIn {
